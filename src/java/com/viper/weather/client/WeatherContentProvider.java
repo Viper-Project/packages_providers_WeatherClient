@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.providers.weather;
+package com.viper.weather.client;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -23,7 +23,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import static com.android.providers.weather.utils.Constants.DEBUG;
+import static com.viper.weather.client.utils.Constants.DEBUG;
 
 public class WeatherContentProvider extends ContentProvider {
 
@@ -62,7 +62,7 @@ public class WeatherContentProvider extends ContentProvider {
                 e.printStackTrace();
             }
         }
-        WeatherProvider provider = weatherChannelApi.getResult();
+        WeatherClient provider = weatherChannelApi.getResult();
         if (DEBUG) Log.d(TAG, provider.toString());
         final MatrixCursor result = new MatrixCursor(PROJECTION_DEFAULT_WEATHER);
         if (provider != null) {

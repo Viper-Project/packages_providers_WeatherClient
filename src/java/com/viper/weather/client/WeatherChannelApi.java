@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.providers.weather;
+package com.viper.weather.client;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -23,8 +23,8 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.android.providers.weather.utils.Constants;
-import com.android.providers.weather.utils.Utilities;
+import com.viper.weather.client.utils.Constants;
+import com.viper.weather.client.utils.Utilities;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -56,9 +56,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.android.providers.weather.utils.Constants.DEBUG;
-import static com.android.providers.weather.WeatherProvider.WEATHER_UPDATE_ERROR;
-import static com.android.providers.weather.WeatherProvider.WEATHER_UPDATE_SUCCESS;
+import static com.viper.weather.client.utils.Constants.DEBUG;
+import static com.viper.weather.client.WeatherClient.WEATHER_UPDATE_ERROR;
+import static com.viper.weather.client.WeatherClient.WEATHER_UPDATE_SUCCESS;
 
 public class WeatherChannelApi implements OnFailureListener, OnCanceledListener {
     private String TAG = "WeatherChannelApi";
@@ -149,9 +149,9 @@ public class WeatherChannelApi implements OnFailureListener, OnCanceledListener 
         }
     };
 
-    WeatherProvider getResult() {
+    WeatherClient getResult() {
         if (isRunning() || mLocationResult == null || mLocationResult.getLastLocation() == null) {
-            return new WeatherProvider(WEATHER_UPDATE_ERROR, "", 0, 0);
+            return new WeatherClient(WEATHER_UPDATE_ERROR, "", 0, 0);
         }
         Location location = mLocationResult.getLastLocation();
         if (DEBUG) Log.d(TAG, "getResult");
@@ -191,12 +191,12 @@ public class WeatherChannelApi implements OnFailureListener, OnCanceledListener 
                 int tempMetric = (int) Math.round((Integer.valueOf(tempImperial) - 32.0) * 5 / 9);
                 if (DEBUG)
                     Log.d(TAG, "tempImperial: " + tempImperial + " tempMetric: " + tempMetric + " parsedConditions: " + parsedConditions);
-                return new WeatherProvider(WEATHER_UPDATE_SUCCESS, parsedConditions, tempMetric, Integer.valueOf(tempImperial));
+                return new WeatherClient(WEATHER_UPDATE_SUCCESS, parsedConditions, tempMetric, Integer.valueOf(tempImperial));
             }
         } catch (Exception e) {
             if (DEBUG) Log.e(TAG, "Exception", e);
         }
-        return new WeatherProvider(WEATHER_UPDATE_ERROR, "", 0, 0);
+        return new WeatherClient(WEATHER_UPDATE_ERROR, "", 0, 0);
     }
 
     private String parseCondition(String toCompare) {

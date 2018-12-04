@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.providers.weather;
+package com.viper.weather.client;
 
-public class WeatherProvider {
+public class WeatherClient {
 
     public static final int WEATHER_UPDATE_SUCCESS = 0; // Success
     public static final int WEATHER_UPDATE_RUNNING = 1; // Update running
@@ -26,7 +26,7 @@ public class WeatherProvider {
     private int temperatureMetric;
     private int temperatureImperial;
 
-    WeatherProvider(int status, String conditions, int temperatureMetric, int temperatureImperial) {
+    WeatherClient(int status, String conditions, int temperatureMetric, int temperatureImperial) {
         this.status = status;
         this.conditions = conditions;
         this.temperatureMetric = temperatureMetric;
@@ -51,7 +51,7 @@ public class WeatherProvider {
 
     @Override
     public String toString() {
-        return "WeatherProvider: " +
+        return "WeatherClient: " +
                 "status=" + getStatus() + "," +
                 "conditions=" + getConditions() + "," +
                 "temperatureMetric=" + getTemperature(true) + "," +

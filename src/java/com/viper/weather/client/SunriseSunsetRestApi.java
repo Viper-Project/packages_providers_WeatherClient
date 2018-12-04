@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.providers.weather;
+package com.viper.weather.client;
 
 import android.content.Context;
 import android.os.StrictMode;
 import android.util.Log;
 
-import com.android.providers.weather.utils.Constants;
-import com.android.providers.weather.utils.Utilities;
+import com.viper.weather.client.utils.Constants;
+import com.viper.weather.client.utils.Utilities;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
@@ -40,7 +40,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.android.providers.weather.utils.Constants.DEBUG;
+import static com.viper.weather.client.utils.Constants.DEBUG;
 
 class SunriseSunsetRestApi {
 
